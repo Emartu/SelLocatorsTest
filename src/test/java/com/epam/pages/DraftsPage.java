@@ -2,6 +2,8 @@ package com.epam.pages;
 
 import com.epam.base.BaseClass;
 import com.epam.base.SetProperties;
+import com.epam.base.TimeOut;
+import com.epam.base.WaitTool;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -9,21 +11,15 @@ import org.openqa.selenium.WebElement;
 
 public class DraftsPage {
 
-    String url = "https://mail.yandex.by/";
-    String userName = "testtask28";
-    private String passw = "testtask28testtask28";
-    String toAdress = "emartu@yandex.ru";
-    String subj = "sent via WebDriver";
-    String message = "Test message ... ";
+    SetProperties setProperties = new SetProperties();
+    public static WebDriver driver = new BaseClass().initDriver();
+    WaitTool waitTool = new WaitTool();
+    TimeOut timeout = new TimeOut();
     //private final String CONST = "const xpath";
 
-    private WebDriver driver = new BaseClass().initDriver();
-
-    public void openPage() {
-        driver.get(url);
-    }
 
     public void setUserName(String userName) {
+        driver.get(setProperties.getUrl());
         WebElement login = driver.findElement(new By.ByXPath("//input[@name='login']"));
         login.sendKeys(userName);
     }
@@ -39,9 +35,8 @@ public class DraftsPage {
     }
 
     public void doLogin() {
-        this.openPage();
-        this.setUserName(userName);
-        this.setPassword(passw);
+        this.setUserName(setProperties.getUserName());
+        this.setPassword(setProperties.getPassw());
         this.clickSubmit();
     }
 
@@ -53,19 +48,34 @@ public class DraftsPage {
     public void setToAdress() {
         WebElement sendTo = driver.findElement(new By.ByXPath("//*[@class='js-compose-field mail-Bubbles']"));
         sendTo.click();
-        sendTo.sendKeys(toAdress);
+        sendTo.sendKeys(setProperties.getToAdress());
+        timeout.sleep(2);
     }
 
     public void setMailSubject() {
         WebElement subject = driver.findElement(new By.ByXPath("//*[@class='mail-Compose-Field-Input-Controller js-compose-field js-editor-tabfocus-prev']"));
         subject.click();
-        subject.sendKeys(subj);
+        subject.sendKeys(setProperties.getSubj());
+        timeout.sleep(2);
     }
 
     public void setMailBody() {
         WebElement mailBody = driver.findElement(new By.ByXPath("//*[@id='cke_1_contents']"));
         mailBody.click();
-        mailBody.sendKeys(message);
+        mailBody.sendKeys(setProperties.getMessage());
+        timeout.sleep(4);
+
+    }
+
+//    public void clickSendButton() {
+//        WebElement sendButton = driver.findElement(new By.ByXPath("//button[@type='submit']"));
+//        sendButton.click();
+//    }
+
+    public void clickPopUpSaveChanges() {
+        WebElement popupSaveButton = driver.findElement(new By.ByXPath("//button[@data-action='save']"));
+        popupSaveButton.click();
+        timeout.sleep(2);
     }
 
     public void clickDraftLink() {
@@ -74,25 +84,36 @@ public class DraftsPage {
     }
 
     public void goDraft() {
+        this.doLogin();
+        waitTool.waitForElementPresent(driver, new By.ByXPath("//*[@class='mail-User-Name']"), 5);
         this.clickCreateNewMail();
+        timeout.sleep(6);
         this.setToAdress();
+        timeout.sleep(6);
         this.setMailSubject();
+        timeout.sleep(6);
         this.setMailBody();
+        timeout.sleep(1);
         this.clickDraftLink();
+        timeout.sleep(1);
+        this.clickPopUpSaveChanges();
+        timeout.sleep(6);
     }
 
-    public boolean messageIsInDraft() {
-        try {
-            WebElement element = driver.findElement(new By.ByXPath("//span[@title='sent via WebDriver']"));
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
+
+//    public boolean messageIsInDraft() {
+//        try {
+//            WebElement element = driver.findElement(new By.ByXPath("//span[@title='sent via WebDriver']"));
+//            return true;
+//        } catch (NoSuchElementException e) {
+//            return false;
+//        }
+//    }
 
     public void openDraftMessage() {
         WebElement draftMessage = driver.findElement(new By.ByXPath("//span[@title='sent via WebDriver']"));
         draftMessage.click();
+        timeout.sleep(6);
     }
 
     public String getDraftContentTo() {
@@ -101,8 +122,8 @@ public class DraftsPage {
     }
 
     public String getDraftContentSubject() {
-        WebElement subject = driver.findElement(new By.ByXPath("//input[contains(@value, 'sent via WebDriver')])"));
-        return subject.getText();
+        String subject = driver.findElement(new By.ByXPath("//input[@name='subj']")).getText();
+        return subject;
     }
 
     public String getMailBody() {
