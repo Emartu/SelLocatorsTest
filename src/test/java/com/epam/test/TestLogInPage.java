@@ -14,7 +14,7 @@ public class TestLogInPage {
 
     LogInPage objLoginPage;
 
-    @BeforeClass
+    @BeforeClass (alwaysRun = true)
     public void setup() {
         new SetProperties().setSystemProperty();
     }

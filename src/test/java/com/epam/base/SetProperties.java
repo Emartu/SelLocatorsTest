@@ -11,6 +11,16 @@ public class SetProperties {
     private String TOADRESS = "emartu@yandex.ru";
     private String SUBJ = "sent via WebDriver";
     private String MESSAGE = "Test message ... ";
+    private String CONTENTTO = "emartu";
+    private String CONTENTSUBJ = "sent";
+
+    public String getCONTENTTO() {
+        return CONTENTTO;
+    }
+
+    public String getCONTENTSUBJ() {
+        return CONTENTSUBJ;
+    }
 
     public SetProperties() {
     }

@@ -12,7 +12,7 @@ public class TestNewMailPage {
     WebDriver driver;
     NewMailPage objMailPage;
 
-    @BeforeClass
+    @BeforeClass (alwaysRun = true)
     public void setup() {
         new SetProperties().setSystemProperty();
     }
@@ -28,7 +28,7 @@ public class TestNewMailPage {
         objMailPage = new NewMailPage();
         objMailPage.doLogin();
         objMailPage.goDraft();
-        Assert.assertTrue(objMailPage.messageIsInDraft(), "Element is not found, seems like message is not saved in Drafts ... ");
+        Assert.assertTrue(objMailPage.messageIsInDraft(), "Element is not found, seems like the message is not saved in Drafts ... ");
     }
 
 }

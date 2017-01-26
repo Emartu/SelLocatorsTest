@@ -85,6 +85,7 @@ public class DraftsPage {
 
     public void goDraft() {
         this.doLogin();
+        timeout.sleep(6);
         waitTool.waitForElementPresent(driver, new By.ByXPath("//*[@class='mail-User-Name']"), 5);
         this.clickCreateNewMail();
         timeout.sleep(6);
