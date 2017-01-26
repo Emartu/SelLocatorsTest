@@ -25,7 +25,7 @@ public class TestLogInPage {
 
     }
 
-    @Test(description = "Tests whether user is Logged In", testName = "testLogin")
+    @Test(groups = "testLoginPage", testName = "testLogin", description = "Tests whether user is Logged In")
     public void testLogin() {
         objLoginPage = new LogInPage();
         objLoginPage.doLogin();

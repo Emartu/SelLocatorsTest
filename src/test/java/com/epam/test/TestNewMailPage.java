@@ -22,7 +22,7 @@ public class TestNewMailPage {
         NewMailPage.driver.quit();
     }
 
-    @Test(description = "Tests whether email is sent")
+    @Test(groups = "testNewMailPage", testName = "testNewMailPage",description = "Tests whether email is sent")
     public void testMailIsInDraft() {
 
         objMailPage = new NewMailPage();

@@ -3,68 +3,68 @@ package com.epam.base;
 
 public class SetProperties {
 
-    private String name = "webdriver.gecko.driver";
-    private String path = "resource\\geckodriver-v0.13.0-win64\\geckodriver.exe";
-    private String url = "https://mail.yandex.by/";
-    private String userName = "testtask28";
-    private String passw = "testtask28testtask28";
-    private String toAdress = "emartu@yandex.ru";
-    private String subj = "sent via WebDriver";
-    private String message = "Test message ... ";
+    private String NAME = "webdriver.gecko.driver";
+    private String PATH = "resource\\geckodriver-v0.13.0-win64\\geckodriver.exe";
+    private String URL = "https://mail.yandex.by/";
+    private String USERNAME = "testtask28";
+    private String PASSW = "testtask28testtask28";
+    private String TOADRESS = "emartu@yandex.ru";
+    private String SUBJ = "sent via WebDriver";
+    private String MESSAGE = "Test message ... ";
 
     public SetProperties() {
     }
 
     public void setSystemProperty() {
-        System.setProperty(name, path);
+        System.setProperty(NAME, PATH);
     }
 
     public String getUrl() {
-        return this.url;
+        return this.URL;
     }
 
-    public void setUrlValue(String urlValue) {
-        this.url = urlValue;
+    public void setUrlValue(String URLVALUE) {
+        this.URL = URLVALUE;
     }
 
     public String getUserName() {
-        return this.userName;
+        return this.USERNAME;
     }
 
-    public void setUserName(String userNameValue) {
-        this.url = userNameValue;
+    public void setUserName(String USERNAMEVALUE) {
+        this.USERNAME = USERNAMEVALUE;
     }
 
     public String getPassw() {
-        return this.passw = passw;
+        return this.PASSW = PASSW;
     }
 
-    public void setPassw(String passwValue) {
-        this.passw = passwValue;
+    public void setPassw(String PASSWVALUE) {
+        this.PASSW = PASSWVALUE;
     }
 
     public String getToAdress() {
-        return this.toAdress = toAdress;
+        return this.TOADRESS = TOADRESS;
     }
 
-    public void setToAdress(String toAdressValue) {
-        this.passw = toAdressValue;
+    public void setToAdress(String TOADRESSVALUE) {
+        this.TOADRESS = TOADRESSVALUE;
     }
 
     public String getSubj() {
-        return this.subj = subj;
+        return this.SUBJ = SUBJ;
     }
 
-    public void setSubj(String subjValue) {
-        this.subj = subjValue;
+    public void setSubj(String SUBJVALUE) {
+        this.SUBJ = SUBJVALUE;
     }
 
     public String getMessage() {
-        return this.message = message;
+        return this.MESSAGE = MESSAGE;
     }
 
-    public void setMessage(String messageValue) {
-        this.message = messageValue;
+    public void setMessage(String MESSAGEVALUE) {
+        this.MESSAGE = MESSAGEVALUE;
     }
 
 

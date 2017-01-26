@@ -100,16 +100,6 @@ public class DraftsPage {
         timeout.sleep(6);
     }
 
-
-//    public boolean messageIsInDraft() {
-//        try {
-//            WebElement element = driver.findElement(new By.ByXPath("//span[@title='sent via WebDriver']"));
-//            return true;
-//        } catch (NoSuchElementException e) {
-//            return false;
-//        }
-//    }
-
     public void openDraftMessage() {
         WebElement draftMessage = driver.findElement(new By.ByXPath("//span[@title='sent via WebDriver']"));
         draftMessage.click();
@@ -117,8 +107,8 @@ public class DraftsPage {
     }
 
     public String getDraftContentTo() {
-        WebElement toAdress = driver.findElement(new By.ByXPath("//span[@data-contact-email='biddeford@yandex.by']"));
-        return toAdress.getText();
+        String to = driver.findElement(new By.ByXPath("//div[@name='to']")).getText();
+        return to;
     }
 
     public String getDraftContentSubject() {
